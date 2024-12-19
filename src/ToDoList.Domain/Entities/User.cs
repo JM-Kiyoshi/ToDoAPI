@@ -17,6 +17,7 @@ public class User
     public User(long id, string name, string email, string password)
     {
         DomainValidationException.When(id < 0, "UserId can't be less than zero");
+        Id = id;
         Validation(name, email, password);
     }
 
