@@ -1,10 +1,10 @@
+using ToDoList.Domain.Exceptions;
 using ToDoList.Domain.Validators;
 
 namespace ToDoList.Domain.Entities;
 
-public class Assignment
+public class Assignment : Base
 {
-    public long Id { get; private set; }
     public string Description { get; private set; }
     public long UserId { get; private set; }
     public long AssignmentListId { get; private set; }
@@ -12,43 +12,34 @@ public class Assignment
     public DateTime ConcludedAt { get; private set; }
     public DateTime Deadline { get; private set; }
 
-    public Assignment(string description, DateTime deadline)
-    {
-        Validation(description, deadline);
-    }
 
-    public Assignment(long id, string description, long userId, long assignmentListId, DateTime deadline)
+    public Assignment(string description, long userId, long assignmentListId, bool concluded, DateTime concludedAt, DateTime deadline)
     {
-        DomainValidationException.When(id < 0, "Id can't be less than zero");
-        DomainValidationException.When(userId < 0, "UserId can't be less than zero");
-        DomainValidationException.When(assignmentListId < 0, "AssignmentListId can't be less than zero");
-        Validation(description, deadline);
-        Id = id;
         Description = description;
         UserId = userId;
         AssignmentListId = assignmentListId;
-        Deadline = deadline;
-    }
-
-
-    public void Edit(string description, bool concluded, DateTime concludedAt, DateTime deadline)
-    {
-        Validation(description, deadline);
-        Description = description;
         Concluded = concluded;
         ConcludedAt = concludedAt;
-        
-    }
-
-    
-    
-    private void Validation(string description, DateTime deadline)
-    {
-        DomainValidationException.When(string.IsNullOrEmpty(description), "Description cannot be empty.");
-        DomainValidationException.When(deadline < DateTime.Now, "Deadline cannot be earlier than now.");
-
-        Description = description;
         Deadline = deadline;
+        _errors = new List<string>();
+        Validate();
     }
-    
+
+    public override bool Validate()
+    {
+        var validator = new AssignmentValidator();
+        var validation = validator.Validate(this);
+
+        if (!validation.IsValid)
+        {
+            foreach (var error in validation.Errors)
+            {
+                _errors.Add(error.ErrorMessage);
+            }
+
+            throw new DomainException("Some field is wrong, please correct it");
+        }
+
+        return true;
+    }
 }
