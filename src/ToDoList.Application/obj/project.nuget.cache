@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "Q9WKV8nsHMk=",
+  "dgSpecHash": "WPYoNggQE3E=",
   "success": true,
   "projectFilePath": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Application/ToDoList.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/julianomagalhaes/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
+    "/home/julianomagalhaes/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "/home/julianomagalhaes/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "/home/julianomagalhaes/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/home/julianomagalhaes/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

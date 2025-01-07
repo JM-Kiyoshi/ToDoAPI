@@ -11,7 +11,4 @@ public abstract class Base
     }
 
     public IReadOnlyCollection<string> Errors => _errors;
-
-    public abstract bool Validate();
-
 }
