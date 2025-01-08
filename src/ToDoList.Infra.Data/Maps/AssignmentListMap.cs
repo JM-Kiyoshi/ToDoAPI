@@ -14,20 +14,20 @@ public class AssignmentListMap : IEntityTypeConfiguration<AssignmentList>
 
         builder.Property(x => x.Id)
             .HasColumnName("IdAssignmentList")
-            .HasColumnType("bigint")
+            .HasColumnType("BIGINT")
             .UseMySqlIdentityColumn();
 
         builder.Property(x => x.Name)
             .HasColumnName("Name")
-            .HasColumnType("varchar(50)");
+            .HasColumnType("VARCHAR(50)");
         
         builder.Property(x => x.UserId)
             .HasColumnName("UserId")
-            .HasColumnType("bigint");
+            .HasColumnType("BIGINT");
         
         builder.Property(x => x.AssignmentId)
             .HasColumnName("AssignmentId")
-            .HasColumnType("bigint");
+            .HasColumnType("BIGINT");
 
         builder.HasOne(x => x.User)
             .WithMany(x => x.AssignmentList);

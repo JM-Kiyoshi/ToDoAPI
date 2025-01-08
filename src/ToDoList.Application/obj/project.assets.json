@@ -207,19 +207,19 @@
     ]
   },
   "packageFolders": {
-    "/home/julianomagalhaes/.nuget/packages/": {}
+    "/home/juliano/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Application/ToDoList.Application.csproj",
+      "projectUniqueName": "/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Application/ToDoList.Application.csproj",
       "projectName": "ToDoList.Application",
-      "projectPath": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Application/ToDoList.Application.csproj",
-      "packagesPath": "/home/julianomagalhaes/.nuget/packages/",
-      "outputPath": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Application/obj/",
+      "projectPath": "/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Application/ToDoList.Application.csproj",
+      "packagesPath": "/home/juliano/.nuget/packages/",
+      "outputPath": "/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Application/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/julianomagalhaes/.nuget/NuGet/NuGet.Config"
+        "/home/juliano/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

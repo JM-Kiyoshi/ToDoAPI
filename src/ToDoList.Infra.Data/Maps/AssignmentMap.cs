@@ -14,32 +14,32 @@ public class AssignmentMap : IEntityTypeConfiguration<Assignment>
         
         builder.Property(x => x.Id)
             .HasColumnName("Id")
-            .HasColumnType("bigint")
+            .HasColumnType("BIGINT")
             .UseMySqlIdentityColumn();
         
         builder.Property(x => x.Description)
             .HasColumnName("Description")
-            .HasColumnType("varchar(500)");
+            .HasColumnType("VARCHAR(500)");
         
         builder.Property(x => x.UserId)
             .HasColumnName("UserId")
-            .HasColumnType("bigint");
+            .HasColumnType("BIGINT");
         
         builder.Property(x => x.AssignmentListId)
             .HasColumnName("AssignmentListId")
-            .HasColumnType("bigint");
+            .HasColumnType("BIGINT");
         
         builder.Property(x => x.Deadline)
             .HasColumnName("Deadline")
-            .HasColumnType("date");
+            .HasColumnType("DATETIME");
         
         builder.Property(x => x.Concluded)
             .HasColumnName("IsConcluded")
-            .HasColumnType("boolean");
+            .HasColumnType("TINYINT(1)");
         
         builder.Property(x => x.ConcludedAt)
             .HasColumnName("ConcludedAt")
-            .HasColumnType("date");
+            .HasColumnType("DATETIME");
 
         builder.HasMany(x => x.AssignmentLists)
             .WithOne(c => c.Assignment)

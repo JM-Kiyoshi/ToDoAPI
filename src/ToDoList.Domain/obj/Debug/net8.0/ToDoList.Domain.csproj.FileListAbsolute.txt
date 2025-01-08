@@ -1,0 +1,13 @@
+/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/bin/Debug/net8.0/ToDoList.Domain.deps.json
+/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/bin/Debug/net8.0/ToDoList.Domain.dll
+/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/bin/Debug/net8.0/ToDoList.Domain.pdb
+/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/ToDoList.Domain.csproj.AssemblyReference.cache
+/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/ToDoList.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/ToDoList.Domain.AssemblyInfoInputs.cache
+/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/ToDoList.Domain.AssemblyInfo.cs
+/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/ToDoList.Domain.csproj.CoreCompileInputs.cache
+/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/ToDoList.Domain.sourcelink.json
+/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/ToDoList.Domain.dll
+/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/refint/ToDoList.Domain.dll
+/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/ToDoList.Domain.pdb
+/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/ref/ToDoList.Domain.dll
