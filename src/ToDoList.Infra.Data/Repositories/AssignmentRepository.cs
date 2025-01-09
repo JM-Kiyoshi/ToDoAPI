@@ -20,6 +20,7 @@ public class AssignmentRepository : BaseRepository<Assignment>, IAssignmentRepos
         var assignments = await _context.Assignments.AsNoTracking()
             .Where(x => x.UserId == userId).ToListAsync();
         return assignments;
+        
     }
 
     public async Task<ICollection<Assignment>> SearchByConcludedStatusAsync(bool concludedStatus, long userId)
