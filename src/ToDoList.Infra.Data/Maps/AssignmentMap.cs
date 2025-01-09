@@ -35,15 +35,20 @@ public class AssignmentMap : IEntityTypeConfiguration<Assignment>
         
         builder.Property(x => x.Concluded)
             .HasColumnName("IsConcluded")
-            .HasColumnType("TINYINT(1)");
+            .HasColumnType("TINYINT(1)")
+            .HasDefaultValue(false);
         
         builder.Property(x => x.ConcludedAt)
             .HasColumnName("ConcludedAt")
             .HasColumnType("DATETIME");
 
-        builder.HasMany(x => x.AssignmentLists)
-            .WithOne(c => c.Assignment)
-            .HasForeignKey(x => x.AssignmentId);
+        builder.Property(x => x.CreatedAt)
+            .ValueGeneratedOnAdd()
+            .HasColumnType("DATETIME");
+
+        builder.Property(x => x.UpdatedAt)
+            .ValueGeneratedOnAddOrUpdate()
+            .HasColumnType("DATETIME");
 
     }
 }

@@ -9,19 +9,22 @@ public class Assignment : Base
     public long UserId { get; private set; }
     public long AssignmentListId { get; private set; }
     public bool Concluded { get; private set; }
+    public DateTime CreatedAt { get; private set; }
+    public DateTime UpdatedAt { get; private set; }
     public DateTime ConcludedAt { get; private set; }
     public DateTime Deadline { get; private set; }
 
-    public ICollection<AssignmentList> AssignmentLists { get; set; }
+    public User User { get; private set; }
+    public AssignmentList AssignmentList { get; set; }
 
 
-    public Assignment(string description, long userId, long assignmentListId, bool concluded, DateTime concludedAt, DateTime deadline)
+    public Assignment(string description, long userId, long assignmentListId, bool concluded, DateTime deadline)
     {
         Description = description;
         UserId = userId;
         AssignmentListId = assignmentListId;
+        CreatedAt = DateTime.Now;
         Concluded = concluded;
-        ConcludedAt = concludedAt;
         Deadline = deadline;
         _errors = new List<string>();
         Validate();
@@ -41,5 +44,29 @@ public class Assignment : Base
 
             throw new DomainException("Some field is wrong, please correct it");
         }
+    }
+
+    public void ChangeConcludedStatus(bool concluded)
+    {
+        Concluded = concluded;
+        Validate();
+    }
+
+    public void ChangeConcludedAt(DateTime concludedAt)
+    {
+        ConcludedAt = concludedAt;
+        Validate();
+    }
+
+    public void ChangeDeadline(DateTime deadline)
+    {
+        Deadline = deadline;
+        Validate();
+    }
+
+    public void ChangeDescription(string description)
+    {
+        Description = description;
+        Validate();
     }
 }

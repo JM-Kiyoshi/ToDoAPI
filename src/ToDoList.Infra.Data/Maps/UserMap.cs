@@ -33,9 +33,14 @@ public class UserMap : IEntityTypeConfiguration<User>
             .HasColumnType("VARCHAR(16)")
             .HasMaxLength(16);
 
-        builder.HasMany(x => x.AssignmentList)
+        builder.HasMany(x => x.Assignments)
             .WithOne(c => c.User)
-            .HasForeignKey(c => c.UserId);
+            .HasForeignKey(c => c.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasMany(x => x.AssignmentLists)
+            .WithOne(c => c.User)
+            .OnDelete(DeleteBehavior.Restrict);
 
     }
 }

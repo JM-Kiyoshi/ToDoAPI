@@ -8,14 +8,18 @@ public class User : Base
     public string Name { get; private set; }
     public string Email { get; private set; }
     public string Password { get; private set; }
-    public ICollection<AssignmentList> AssignmentList { get; set; }
+    
+    
+    public ICollection<Assignment> Assignments { get; set; }
+    public ICollection<AssignmentList> AssignmentLists { get; set; }
 
     public User(string name, string email, string password)
     {
         Name = name;
         Email = email;
         Password = password;
-        AssignmentList = new List<AssignmentList>();
+        Assignments = new List<Assignment>();
+        AssignmentLists = new List<AssignmentList>();
         _errors = new List<string>();
         Validate();
     }

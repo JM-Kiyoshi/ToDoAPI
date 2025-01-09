@@ -8,7 +8,8 @@ namespace ToDoList.Infra.Data.Repositories;
 public class AssignmentRepository : BaseRepository<Assignment>, IAssignmentRepository
 {
     private readonly ApplicationDbContext _context;
-    private 
+    private readonly BaseRepository<Assignment> _repository;
+    
     public AssignmentRepository(ApplicationDbContext context) : base(context)
     {
         _context = context;
@@ -37,7 +38,12 @@ public class AssignmentRepository : BaseRepository<Assignment>, IAssignmentRepos
 
     public async Task<Assignment> EditConcludedStatusAsync(long assignmentId, bool concludedStatus)
     {
-        var assignment = await _context.Assignments.
+        var assignment = await _repository.GetByIdAsync(assignmentId);
+        if (assignment != null)
+        {
+            assignment.ChangeConcludedStatus(concludedStatus);
+        }
+        return assignment;
     }
 
     public async Task<Assignment> EditDescriptionAsync(long assignmentId, string description)

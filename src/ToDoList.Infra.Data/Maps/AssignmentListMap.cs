@@ -24,15 +24,10 @@ public class AssignmentListMap : IEntityTypeConfiguration<AssignmentList>
         builder.Property(x => x.UserId)
             .HasColumnName("UserId")
             .HasColumnType("BIGINT");
-        
-        builder.Property(x => x.AssignmentId)
-            .HasColumnName("AssignmentId")
-            .HasColumnType("BIGINT");
 
-        builder.HasOne(x => x.User)
-            .WithMany(x => x.AssignmentList);
-        
-        builder.HasOne(x => x.Assignment)
-            .WithMany(x => x.AssignmentLists);
+        builder.HasMany(x => x.Assignments)
+            .WithOne(c => c.AssignmentList)
+            .HasForeignKey(c => c.AssignmentListId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

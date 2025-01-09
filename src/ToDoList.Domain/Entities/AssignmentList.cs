@@ -7,16 +7,14 @@ public class AssignmentList : Base
 {
     public string Name { get; private set; }
     public long UserId { get; set; }
-    public long AssignmentId { get; set; }
     public User User { get; set; }
     public Assignment Assignment { get; set; }
     public ICollection<Assignment> Assignments { get; set; }
 
-    public AssignmentList(string name, long userId, long assignmentId)
+    public AssignmentList(string name, long userId)
     {
         Name = name;
         UserId = userId;
-        AssignmentId = assignmentId;
         Assignments = new List<Assignment>();
         _errors = new List<string>();
         Validate();
