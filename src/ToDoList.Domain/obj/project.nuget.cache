@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "rWjTVTVnbxw=",
+  "dgSpecHash": "WCW3q1LWNGM=",
   "success": true,
-  "projectFilePath": "/home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Domain/ToDoList.Domain.csproj",
+  "projectFilePath": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Domain/ToDoList.Domain.csproj",
   "expectedPackageFiles": [
-    "/home/juliano/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512"
+    "/home/julianomagalhaes/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512"
   ],
   "logs": []
 }

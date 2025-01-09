@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ToDoList.Infra.Data
-build_property.ProjectDir = /home/juliano/RiderProjects/ToDoListAPI/src/ToDoList.Infra.Data/
+build_property.ProjectDir = /home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Infra.Data/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
