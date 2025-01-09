@@ -14,7 +14,7 @@ public class Assignment : Base
     public DateTime ConcludedAt { get; private set; }
     public DateTime Deadline { get; private set; }
 
-    public User User { get; private set; }
+    public User User { get; set; }
     public AssignmentList AssignmentList { get; set; }
 
 
@@ -50,23 +50,27 @@ public class Assignment : Base
     {
         Concluded = concluded;
         Validate();
+        UpdatedAt = DateTime.Now;
     }
 
     public void ChangeConcludedAt(DateTime concludedAt)
     {
         ConcludedAt = concludedAt;
         Validate();
+        UpdatedAt = DateTime.Now;
     }
 
     public void ChangeDeadline(DateTime deadline)
     {
         Deadline = deadline;
         Validate();
+        UpdatedAt = DateTime.Now;
     }
 
     public void ChangeDescription(string description)
     {
         Description = description;
         Validate();
+        UpdatedAt = DateTime.Now;
     }
 }

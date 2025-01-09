@@ -8,6 +8,8 @@ public class User : Base
     public string Name { get; private set; }
     public string Email { get; private set; }
     public string Password { get; private set; }
+    public DateTime CreatedAt { get; private set; }
+    public DateTime UpdatedAt { get; private set; }
     
     
     public ICollection<Assignment> Assignments { get; set; }
@@ -18,6 +20,7 @@ public class User : Base
         Name = name;
         Email = email;
         Password = password;
+        CreatedAt = DateTime.Now;
         Assignments = new List<Assignment>();
         AssignmentLists = new List<AssignmentList>();
         _errors = new List<string>();
@@ -38,5 +41,26 @@ public class User : Base
 
             throw new DomainException("Some field is wrong, please correct it");
         }
+    }
+
+    public void ChangeName(string name)
+    {
+        Name = name;
+        Validate();
+        UpdatedAt = DateTime.Now;
+    }
+
+    public void ChangeEmail(string email)
+    {
+        Email = email;
+        Validate();
+        UpdatedAt = DateTime.Now;
+    }
+
+    public void ChangePassword(string password)
+    {
+        Password = password;
+        Validate();
+        UpdatedAt = DateTime.Now;
     }
 }

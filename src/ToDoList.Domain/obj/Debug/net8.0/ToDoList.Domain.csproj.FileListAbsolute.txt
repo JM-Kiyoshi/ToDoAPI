@@ -23,3 +23,4 @@
 /home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/refint/ToDoList.Domain.dll
 /home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/ToDoList.Domain.pdb
 /home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/ref/ToDoList.Domain.dll
+/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/Debug/net8.0/ToDoList.Domain.sourcelink.json

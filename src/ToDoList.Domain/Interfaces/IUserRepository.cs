@@ -7,5 +7,8 @@ public interface IUserRepository : IBaseRepository<User>
     Task<User> GetByEmailAsync(string email);
     Task<ICollection<User>> SearchByEmailAsync(string email);
     Task<ICollection<User>> SearchByNameAsync(string name);
-    Task<long> GetIdByEmailAsync(string email);
+    Task<long> GetIdByLoginAsync(string email, string password);
+    Task<User> EditEmailAsync(string currentEmail, string password, string newEmail);
+    Task<User> EditNameAsync(string email, string newName, string password);
+    Task<User> EditPasswordAsync(string email, string currentPassword, string newPassword);
 }

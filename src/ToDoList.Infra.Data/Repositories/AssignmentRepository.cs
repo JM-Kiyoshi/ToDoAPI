@@ -8,7 +8,6 @@ namespace ToDoList.Infra.Data.Repositories;
 public class AssignmentRepository : BaseRepository<Assignment>, IAssignmentRepository
 {
     private readonly ApplicationDbContext _context;
-    private readonly BaseRepository<Assignment> _repository;
     
     public AssignmentRepository(ApplicationDbContext context) : base(context)
     {
@@ -39,7 +38,8 @@ public class AssignmentRepository : BaseRepository<Assignment>, IAssignmentRepos
 
     public async Task<Assignment> EditConcludedStatusAsync(long assignmentId, bool concludedStatus)
     {
-        var assignment = await _repository.GetByIdAsync(assignmentId);
+        var assignment = await _context.Assignments.AsNoTracking()
+            .Where(x => x.Id == assignmentId).FirstOrDefaultAsync();
         if (assignment != null)
         {
             assignment.ChangeConcludedStatus(concludedStatus);
@@ -49,16 +49,34 @@ public class AssignmentRepository : BaseRepository<Assignment>, IAssignmentRepos
 
     public async Task<Assignment> EditDescriptionAsync(long assignmentId, string description)
     {
-        throw new NotImplementedException();
+        var assignment = await _context.Assignments.AsNoTracking()
+            .Where(x => x.Id == assignmentId).FirstOrDefaultAsync();
+        if (assignment != null)
+        {
+            assignment.ChangeDescription(description);
+        }
+        return assignment;
     }
 
-    public async Task<Assignment> EditConcludedAtStatusAsync(long assignmentId, DateTime concludedAt)
+    public async Task<Assignment> EditConcludedAtAsync(long assignmentId, DateTime concludedAt)
     {
-        throw new NotImplementedException();
+        var assignment = await _context.Assignments.AsNoTracking()
+            .Where(x => x.Id == assignmentId).FirstOrDefaultAsync();
+        if (assignment != null)
+        {
+            assignment.ChangeConcludedAt(concludedAt);
+        }
+        return assignment;
     }
 
     public async Task<Assignment> EditDeadlineAsync(long assignmentId, DateTime deadline)
     {
-        throw new NotImplementedException();
+        var assignment = await _context.Assignments.AsNoTracking()
+            .Where(x => x.Id == assignmentId).FirstOrDefaultAsync();
+        if (assignment != null)
+        {
+            assignment.ChangeDeadline(deadline);
+        }
+        return assignment;
     }
 }

@@ -24,6 +24,14 @@ public class AssignmentListMap : IEntityTypeConfiguration<AssignmentList>
         builder.Property(x => x.UserId)
             .HasColumnName("UserId")
             .HasColumnType("BIGINT");
+        
+        builder.Property(x => x.CreatedAt)
+            .ValueGeneratedOnAdd()
+            .HasColumnType("DATETIME");
+
+        builder.Property(x => x.UpdatedAt)
+            .ValueGeneratedOnAddOrUpdate()
+            .HasColumnType("DATETIME");
 
         builder.HasMany(x => x.Assignments)
             .WithOne(c => c.AssignmentList)

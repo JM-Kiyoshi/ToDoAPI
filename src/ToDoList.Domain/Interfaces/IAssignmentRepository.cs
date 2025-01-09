@@ -9,7 +9,7 @@ public interface IAssignmentRepository : IBaseRepository<Assignment>
     Task<ICollection<Assignment>> SearchByDescriptionAsync(string description, long userId);
     Task<Assignment> EditConcludedStatusAsync(long assignmentId, bool concludedStatus);
     Task<Assignment> EditDescriptionAsync(long assignmentId, string description);
-    Task<Assignment> EditConcludedAtStatusAsync(long assignmentId, DateTime concludedAt);
+    Task<Assignment> EditConcludedAtAsync(long assignmentId, DateTime concludedAt);
     Task<Assignment> EditDeadlineAsync(long assignmentId, DateTime deadline);
 
 }

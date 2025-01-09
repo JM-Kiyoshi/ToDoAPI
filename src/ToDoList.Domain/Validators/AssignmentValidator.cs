@@ -27,12 +27,16 @@ public class AssignmentValidator : AbstractValidator<Assignment>
             .NotEmpty()
             .WithMessage("UserId is required");
 
+        RuleFor(x => x.ConcludedAt)
+            .GreaterThanOrEqualTo(x => x.CreatedAt)
+            .WithMessage("The date must be greater than or equal to created date");
+
         RuleFor(x => x.Deadline)
             .NotNull()
             .NotEmpty()
             .WithMessage("Deadline is required")
 
-            .GreaterThan(DateTime.Now)
-            .WithMessage("Deadline must be greater than now");
+            .GreaterThan(x => x.CreatedAt)
+            .WithMessage("Deadline must be greater than created date");
     }
 }

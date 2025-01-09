@@ -7,6 +7,9 @@ public class AssignmentList : Base
 {
     public string Name { get; private set; }
     public long UserId { get; set; }
+    public DateTime CreatedAt { get; private set; }
+    public DateTime UpdatedAt { get; private set; }
+    
     public User User { get; set; }
     public Assignment Assignment { get; set; }
     public ICollection<Assignment> Assignments { get; set; }
@@ -15,6 +18,7 @@ public class AssignmentList : Base
     {
         Name = name;
         UserId = userId;
+        CreatedAt = DateTime.Now;
         Assignments = new List<Assignment>();
         _errors = new List<string>();
         Validate();
@@ -33,5 +37,12 @@ public class AssignmentList : Base
 
             throw new DomainException("Some field is wrong, please correct it");
         }
+    }
+
+    public void ChangeName(string name)
+    {
+        Name = name;
+        Validate();
+        UpdatedAt = DateTime.Now;
     }
 }

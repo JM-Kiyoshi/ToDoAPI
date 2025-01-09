@@ -32,6 +32,14 @@ public class UserMap : IEntityTypeConfiguration<User>
             .HasColumnName("Password")
             .HasColumnType("VARCHAR(16)")
             .HasMaxLength(16);
+        
+        builder.Property(x => x.CreatedAt)
+            .ValueGeneratedOnAdd()
+            .HasColumnType("DATETIME");
+
+        builder.Property(x => x.UpdatedAt)
+            .ValueGeneratedOnAddOrUpdate()
+            .HasColumnType("DATETIME");
 
         builder.HasMany(x => x.Assignments)
             .WithOne(c => c.User)
