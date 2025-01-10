@@ -56,7 +56,7 @@ public class UserRepository : BaseRepository<User>, IUserRepository
         return obj;
     }
 
-    public async Task<User> EditNameAsync(string email, string newName, string password)
+    public async Task<User> EditNameAsync(string email, string password, string newName)
     {
         var obj = await _context.Users.AsNoTracking()
             .Where(x => x.Email == email && x.Password == password).FirstOrDefaultAsync();
