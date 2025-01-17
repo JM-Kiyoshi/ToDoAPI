@@ -1,7 +1,10 @@
 using AutoMapper;
 using ToDoList.Application.DTOs;
+using ToDoList.Application.DTOs.Validations;
 using ToDoList.Application.Services.Interfaces;
+using ToDoList.Domain.Entities;
 using ToDoList.Domain.Interfaces;
+using ToDoList.Domain.Validators;
 
 namespace ToDoList.Application.Services;
 
@@ -21,57 +24,106 @@ public class UserService : IUserService
         {
             return ResultService.Fail<UserDTO>("Object is null");
         }
+
+        var result = new UserDTOValidator().Validate(userDto);
+        if (!result.IsValid)
+        {
+            return ResultService.RequestError<UserDTO>("Validation Error", result);
+        }
         
-        var result = new 
+        var user = _mapper.Map<User>(userDto);
+        var data = await _userRepository.CreateAsync(user);
+        return ResultService.OK<UserDTO>(_mapper.Map<UserDTO>(data));
     }
 
     public async Task<ResultService<UserDTO>> UpdateAsync(UserDTO userDto)
     {
-        throw new NotImplementedException();
+        if (userDto is null)
+        {
+            return ResultService.Fail<UserDTO>("Object is null");
+        }
+        
+        var validation = new UserDTOValidator().Validate(userDto);
+        if (!validation.IsValid)
+        {
+            return ResultService.RequestError<UserDTO>("Validation Error", validation);
+        }
+        
+        var user = await _userRepository.GetByIdAsync(userDto.Id);
+        if (user == null)
+        {
+            return ResultService.Fail<UserDTO>("User Not Found");
+        }
+        user = _mapper.Map(userDto, user);
+        await _userRepository.UpdateAsync(user);
+        return ResultService.OK<UserDTO>(_mapper.Map<UserDTO>(user));
     }
 
     public async Task<ResultService> DeleteAsync(long id)
     {
-        throw new NotImplementedException();
+        var user = await _userRepository.GetByIdAsync(id);
+        if (user == null)
+        {
+            return ResultService.Fail<UserDTO>("User Not Found");
+        }
+        
+        await _userRepository.DeleteAsync(user);
+        return ResultService.OK("User Deleted");
     }
 
     public async Task<ResultService<UserDTO>> GetByIdAsync(long id)
     {
-        throw new NotImplementedException();
+        var user = await _userRepository.GetByIdAsync(id);
+        if (user == null)
+        {
+            return ResultService.Fail<UserDTO>("User Not Found");
+        }
+        return ResultService.OK(_mapper.Map<UserDTO>(user));
     }
 
     public async Task<ResultService<ICollection<UserDTO>>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var users = await _userRepository.GetAllAsync();
+        return ResultService.OK(_mapper.Map<ICollection<UserDTO>>(users));
     }
 
     public async Task<ResultService<UserDTO>> GetByEmailAsync(string email)
     {
-        throw new NotImplementedException();
+        var user = await _userRepository.GetByEmailAsync(email);
+        if (user == null)
+        {
+            return ResultService.Fail<UserDTO>("User Not Found");
+        }
+        return ResultService.OK(_mapper.Map<UserDTO>(user));
     }
 
     public async Task<ResultService<ICollection<UserDTO>>> SearchByEmailAsync(string email)
     {
-        throw new NotImplementedException();
+        var users = await _userRepository.SearchByEmailAsync(email);
+        return ResultService.OK(_mapper.Map<ICollection<UserDTO>>(users));
     }
 
     public async Task<ResultService<ICollection<UserDTO>>> SearchByNameAsync(string name)
     {
-        throw new NotImplementedException();
+        var users = await _userRepository.SearchByNameAsync(name);
+        return ResultService.OK(_mapper.Map<ICollection<UserDTO>>(users));
     }
 
     public async Task<ResultService<UserDTO>> EditEmailAsync(string currentEmail, string password, string newEmail)
     {
-        throw new NotImplementedException();
+        var user = await _userRepository.EditEmailAsync(currentEmail, password, newEmail);
+        return ResultService.OK(_mapper.Map<UserDTO>(user));
     }
 
     public async Task<ResultService<UserDTO>> EditNameAsync(string email, string password, string newName)
     {
-        throw new NotImplementedException();
+        var user = await _userRepository.EditNameAsync(email, password, newName);
+        return ResultService.OK(_mapper.Map<UserDTO>(user));
     }
 
     public async Task<ResultService<UserDTO>> EditPasswordAsync(string email, string password, string newPassword)
     {
-        throw new NotImplementedException();
+        var user = await _userRepository.EditPasswordAsync(email, password, newPassword);
+        return ResultService.OK(_mapper.Map<UserDTO>(user));
     }
 }
