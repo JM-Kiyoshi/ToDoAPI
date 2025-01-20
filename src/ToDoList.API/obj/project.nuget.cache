@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "zDmZBLVozZ4=",
+  "dgSpecHash": "SJ5a45U/oM8=",
   "success": true,
   "projectFilePath": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.API/ToDoList.API.csproj",
   "expectedPackageFiles": [
+    "/home/julianomagalhaes/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
     "/home/julianomagalhaes/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",
     "/home/julianomagalhaes/.nuget/packages/microsoft.aspnetcore.openapi/8.0.11/microsoft.aspnetcore.openapi.8.0.11.nupkg.sha512",
     "/home/julianomagalhaes/.nuget/packages/microsoft.entityframeworkcore/8.0.2/microsoft.entityframeworkcore.8.0.2.nupkg.sha512",

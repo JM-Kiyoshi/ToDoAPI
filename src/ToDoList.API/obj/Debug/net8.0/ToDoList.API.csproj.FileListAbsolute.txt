@@ -86,3 +86,6 @@
 /home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.API/obj/Debug/net8.0/ToDoList.API.pdb
 /home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.API/obj/Debug/net8.0/ToDoList.API.genruntimeconfig.cache
 /home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.API/obj/Debug/net8.0/ref/ToDoList.API.dll
+/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.API/bin/Debug/net8.0/AutoMapper.dll
+/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.API/bin/Debug/net8.0/ToDoList.Application.dll
+/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.API/bin/Debug/net8.0/ToDoList.Application.pdb

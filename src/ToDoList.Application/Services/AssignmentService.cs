@@ -20,7 +20,7 @@ public class AssignmentService : IAssignmentService
 
     public async Task<ResultService<AssignmentDTO>> CreateAsync(AssignmentDTO assignmentDto)
     {
-        if (assignmentDto is null)
+        if (assignmentDto == null)
         {
             return ResultService.Fail<AssignmentDTO>("Object is null");
         }
@@ -37,7 +37,7 @@ public class AssignmentService : IAssignmentService
 
     public async Task<ResultService<AssignmentDTO>> UpdateAsync(AssignmentDTO assignmentDto)
     {
-        if (assignmentDto is null)
+        if (assignmentDto == null)
         {
             return ResultService.Fail<AssignmentDTO>("Object is null");
         }

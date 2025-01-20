@@ -20,7 +20,7 @@ public class UserService : IUserService
     }
     public async Task<ResultService<UserDTO>> CreateAsync(UserDTO userDto)
     {
-        if (userDto is null)
+        if (userDto == null)
         {
             return ResultService.Fail<UserDTO>("Object is null");
         }
@@ -38,7 +38,7 @@ public class UserService : IUserService
 
     public async Task<ResultService<UserDTO>> UpdateAsync(UserDTO userDto)
     {
-        if (userDto is null)
+        if (userDto == null)
         {
             return ResultService.Fail<UserDTO>("Object is null");
         }
@@ -84,6 +84,10 @@ public class UserService : IUserService
     public async Task<ResultService<ICollection<UserDTO>>> GetAllAsync()
     {
         var users = await _userRepository.GetAllAsync();
+        if (users.Count == 0)
+        {
+            return ResultService.Fail<ICollection<UserDTO>>("Users Not Found");
+        }
         return ResultService.OK(_mapper.Map<ICollection<UserDTO>>(users));
     }
 
@@ -100,12 +104,20 @@ public class UserService : IUserService
     public async Task<ResultService<ICollection<UserDTO>>> SearchByEmailAsync(string email)
     {
         var users = await _userRepository.SearchByEmailAsync(email);
+        if (users.Count == 0)
+        {
+            return ResultService.Fail<ICollection<UserDTO>>("Users Not Found");
+        }
         return ResultService.OK(_mapper.Map<ICollection<UserDTO>>(users));
     }
 
     public async Task<ResultService<ICollection<UserDTO>>> SearchByNameAsync(string name)
     {
         var users = await _userRepository.SearchByNameAsync(name);
+        if (users.Count == 0)
+        {
+            return ResultService.Fail<ICollection<UserDTO>>("Users Not Found");
+        }
         return ResultService.OK(_mapper.Map<ICollection<UserDTO>>(users));
     }
 

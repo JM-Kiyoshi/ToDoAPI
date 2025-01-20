@@ -1,5 +1,6 @@
 using AutoMapper;
 using ToDoList.Application.DTOs;
+using ToDoList.Application.DTOs.Validations;
 using ToDoList.Application.Services.Interfaces;
 using ToDoList.Domain.Entities;
 using ToDoList.Domain.Interfaces;
@@ -17,41 +18,93 @@ public class AssignmentListService : IAssignmentListService
         _mapper = mapper;
     }
 
-    public Task<ResultService<AssignmentListDTO>> CreateAsync(AssignmentListDTO assignmentListDto)
+    public async Task<ResultService<AssignmentListDTO>> CreateAsync(AssignmentListDTO assignmentListDto)
     {
-        if (assignmentListDto is null)
+        if (assignmentListDto == null)
         {
             return ResultService.Fail<AssignmentListDTO>("Object is null");
         }
+
+        var result = new AssignmentListDTOValidator().Validate(assignmentListDto);
+        if (!result.IsValid)
+        {
+            return ResultService.RequestError<AssignmentListDTO>("Validation Error", result);
+        }
+        
+        var assignmentList = _mapper.Map<AssignmentList>(assignmentListDto);
+        var data = await _assignmentListRepository.CreateAsync(assignmentList);
+        return ResultService.OK(_mapper.Map<AssignmentListDTO>(data));
     }
 
-    public Task<ResultService<AssignmentListDTO>> UpdateAsync(AssignmentListDTO assignmentListDto)
+    public async Task<ResultService<AssignmentListDTO>> UpdateAsync(AssignmentListDTO assignmentListDto)
     {
-        throw new NotImplementedException();
+        if (assignmentListDto == null)
+        {
+            return ResultService.Fail<AssignmentListDTO>("Object is null");
+        }
+
+        var result = new AssignmentListDTOValidator().Validate(assignmentListDto);
+        if (!result.IsValid)
+        {
+            return ResultService.RequestError<AssignmentListDTO>("Validation Error", result);
+        }
+        
+        var assignmentList = await _assignmentListRepository.GetByIdAsync(assignmentListDto.Id);
+        if (assignmentList == null)
+        {
+            return ResultService.Fail<AssignmentListDTO>("Assignment List not found");
+        }
+        
+        assignmentList = _mapper.Map(assignmentListDto, assignmentList);
+        await _assignmentListRepository.UpdateAsync(assignmentList);
+        return ResultService.OK(_mapper.Map<AssignmentListDTO>(assignmentList));
     }
 
-    public Task<ResultService> DeleteAsync(long id)
+    public async Task<ResultService> DeleteAsync(long id)
     {
-        throw new NotImplementedException();
+        var assignmentList = await _assignmentListRepository.GetByIdAsync(id);
+        if (assignmentList == null)
+        {
+            return ResultService.Fail<AssignmentListDTO>("Assignment List not found");
+        }
+
+        await _assignmentListRepository.DeleteAsync(assignmentList);
+        return ResultService.OK("Assignment List deleted");
     }
 
-    public Task<ResultService<AssignmentListDTO>> GetByIdAsync(long id)
+    public async Task<ResultService<AssignmentListDTO>> GetByIdAsync(long id)
     {
-        throw new NotImplementedException();
+        var assignmentList = await _assignmentListRepository.GetByIdAsync(id);
+        if (assignmentList == null)
+        {
+            return ResultService.Fail<AssignmentListDTO>("Assignment List not found");
+        }
+        return ResultService.OK(_mapper.Map<AssignmentListDTO>(assignmentList));
     }
 
-    public Task<ResultService<ICollection<AssignmentListDTO>>> GetAllAsync()
+    public async Task<ResultService<ICollection<AssignmentListDTO>>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var assignmentLists = await _assignmentListRepository.GetAllAsync();
+        if (assignmentLists.Count == 0)
+        {
+            return ResultService.Fail<ICollection<AssignmentListDTO>>("No assignment lists found");
+        }
+        return ResultService.OK(_mapper.Map<ICollection<AssignmentListDTO>>(assignmentLists));
     }
 
-    public Task<ResultService<ICollection<AssignmentListDTO>>> GetAllByUserIdAsync(long userId)
+    public async Task<ResultService<ICollection<AssignmentListDTO>>> GetAllByUserIdAsync(long userId)
     {
-        throw new NotImplementedException();
+        var assignmentLists = await _assignmentListRepository.GetAllByUserIdAsync(userId);
+        if (assignmentLists.Count == 0)
+        {
+            return ResultService.Fail<ICollection<AssignmentListDTO>>("No assignment lists found");
+        }
+        return ResultService.OK(_mapper.Map<ICollection<AssignmentListDTO>>(assignmentLists));
     }
 
-    public Task<ResultService<AssignmentListDTO>> EditNameAsync(long id, string name)
+    public async Task<ResultService<AssignmentListDTO>> EditNameAsync(long id, string name)
     {
-        throw new NotImplementedException();
+        await _assignmentListRepository.EditNameAsync(id, name);
+        return ResultService.OK(_mapper.Map<AssignmentListDTO>(await _assignmentListRepository.GetByIdAsync(id)));
     }
 }

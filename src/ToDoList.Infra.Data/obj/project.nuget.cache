@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "cJcVcrnXXHU=",
+  "dgSpecHash": "E1QjPTOgJbc=",
   "success": true,
   "projectFilePath": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Infra.Data/ToDoList.Infra.Data.csproj",
   "expectedPackageFiles": [
+    "/home/julianomagalhaes/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
     "/home/julianomagalhaes/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",
     "/home/julianomagalhaes/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/julianomagalhaes/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

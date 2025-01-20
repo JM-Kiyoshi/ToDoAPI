@@ -34,3 +34,5 @@
 /home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Infra.Data/obj/Debug/net8.0/ToDoList.Infra.Data.genruntimeconfig.cache
 /home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Infra.Data/obj/Debug/net8.0/ref/ToDoList.Infra.Data.dll
 /home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Infra.Data/obj/Debug/net8.0/ToDoList.Infra.Data.sourcelink.json
+/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Infra.Data/bin/Debug/net8.0/ToDoList.Application.dll
+/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Infra.Data/bin/Debug/net8.0/ToDoList.Application.pdb
