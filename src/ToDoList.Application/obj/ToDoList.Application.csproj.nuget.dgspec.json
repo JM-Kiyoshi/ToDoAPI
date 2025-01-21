@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Application/ToDoList.Application.csproj": {}
+    "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Application/ToDoList.Application.csproj": {}
   },
   "projects": {
-    "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Application/ToDoList.Application.csproj": {
+    "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Application/ToDoList.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Application/ToDoList.Application.csproj",
+        "projectUniqueName": "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Application/ToDoList.Application.csproj",
         "projectName": "ToDoList.Application",
-        "projectPath": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Application/ToDoList.Application.csproj",
-        "packagesPath": "/home/julianomagalhaes/.nuget/packages/",
-        "outputPath": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Application/obj/",
+        "projectPath": "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Application/ToDoList.Application.csproj",
+        "packagesPath": "/home/juliano/.nuget/packages/",
+        "outputPath": "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/julianomagalhaes/.nuget/NuGet/NuGet.Config"
+          "/home/juliano/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Domain/ToDoList.Domain.csproj": {
-                "projectPath": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Domain/ToDoList.Domain.csproj"
+              "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Domain/ToDoList.Domain.csproj": {
+                "projectPath": "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Domain/ToDoList.Domain.csproj"
               }
             }
           }
@@ -72,21 +72,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/julianomagalhaes/.dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Domain/ToDoList.Domain.csproj": {
+    "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Domain/ToDoList.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Domain/ToDoList.Domain.csproj",
+        "projectUniqueName": "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Domain/ToDoList.Domain.csproj",
         "projectName": "ToDoList.Domain",
-        "projectPath": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Domain/ToDoList.Domain.csproj",
-        "packagesPath": "/home/julianomagalhaes/.nuget/packages/",
-        "outputPath": "/home/julianomagalhaes/RiderProjects/ToDoListAPI/src/ToDoList.Domain/obj/",
+        "projectPath": "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Domain/ToDoList.Domain.csproj",
+        "packagesPath": "/home/juliano/.nuget/packages/",
+        "outputPath": "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/julianomagalhaes/.nuget/NuGet/NuGet.Config"
+          "/home/juliano/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -136,7 +136,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/julianomagalhaes/.dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

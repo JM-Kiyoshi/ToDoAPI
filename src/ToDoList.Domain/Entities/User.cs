@@ -63,4 +63,6 @@ public class User : Base
         Validate();
         UpdatedAt = DateTime.Now;
     }
+
+    
 }
