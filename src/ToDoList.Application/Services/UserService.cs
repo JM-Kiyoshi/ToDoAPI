@@ -1,10 +1,10 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using ToDoList.Application.DTOs;
-using ToDoList.Application.DTOs.Validations;
 using ToDoList.Application.Services.Interfaces;
 using ToDoList.Domain.Entities;
 using ToDoList.Domain.Interfaces;
-using ToDoList.Domain.Validators;
+
 
 namespace ToDoList.Application.Services;
 
@@ -12,11 +12,13 @@ public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
+    private readonly IPasswordHasher<User> _passwordHasher;
 
-    public UserService(IUserRepository userRepository, IMapper mapper)
+    public UserService(IUserRepository userRepository, IMapper mapper, PasswordHasher<User> passwordHasher)
     {
         _userRepository = userRepository;
         _mapper = mapper;
+        _passwordHasher = passwordHasher;
     }
     public async Task<ResultService<UserDTO>> CreateAsync(UserDTO userDto)
     {
@@ -24,14 +26,16 @@ public class UserService : IUserService
         {
             return ResultService.Fail<UserDTO>("Object is null");
         }
-
-        var result = new UserDTOValidator().Validate(userDto);
-        if (!result.IsValid)
+        
+        var test = await _userRepository.GetByEmailAsync(userDto.Email);
+        if (test != null)
         {
-            return ResultService.RequestError<UserDTO>("Validation Error", result);
+            return ResultService.Fail<UserDTO>("Email already exists");
         }
         
         var user = _mapper.Map<User>(userDto);
+        user.Validate();
+        user.ChangePassword(_passwordHasher.HashPassword(user, userDto.Password)); 
         var data = await _userRepository.CreateAsync(user);
         return ResultService.OK<UserDTO>(_mapper.Map<UserDTO>(data));
     }
@@ -41,12 +45,6 @@ public class UserService : IUserService
         if (userDto == null)
         {
             return ResultService.Fail<UserDTO>("Object is null");
-        }
-        
-        var validation = new UserDTOValidator().Validate(userDto);
-        if (!validation.IsValid)
-        {
-            return ResultService.RequestError<UserDTO>("Validation Error", validation);
         }
         
         var user = await _userRepository.GetByIdAsync(userDto.Id);

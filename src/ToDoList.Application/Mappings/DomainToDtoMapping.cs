@@ -8,8 +8,8 @@ public class DomainToDtoMapping : Profile
 {
     public DomainToDtoMapping()
     {
-        CreateMap<User, UserDTO>();
-        CreateMap<Assignment, AssignmentDTO>();
-        CreateMap<AssignmentList, AssignmentListDTO>();
+        CreateMap<User, UserDTO>().ReverseMap();
+        CreateMap<Assignment, AssignmentDTO>().ReverseMap();
+        CreateMap<AssignmentList, AssignmentListDTO>().ReverseMap();
     }
 }

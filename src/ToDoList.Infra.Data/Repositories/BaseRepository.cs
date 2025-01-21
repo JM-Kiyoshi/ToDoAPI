@@ -23,10 +23,10 @@ public class BaseRepository<T> : IBaseRepository<T> where T : Base
 
     public async Task<T> UpdateAsync(T entity)
     {
-        var obj = await _context.Set<T>().AsNoTracking().Where(x => x.Id == entity.Id).FirstOrDefaultAsync();
+        var obj = await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == entity.Id);
         if (obj != null)
         {
-            _context.Set<T>().Update(obj);
+            _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
         return entity;
@@ -49,7 +49,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : Base
 
     public async Task<T> GetByIdAsync(long id)
     {
-        var obj = await _context.Set<T>().AsNoTracking().Where(x => x.Id == id).FirstOrDefaultAsync();
+        var obj = await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         return obj;
     }
 }

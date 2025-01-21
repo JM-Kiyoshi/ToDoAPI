@@ -27,4 +27,28 @@ public class UserController : ControllerBase
         
         return BadRequest(result);
     }
+
+    [HttpPut]
+    [Route("api/v1/user/update")]
+    public async Task<ActionResult> Put([FromBody] UserDTO userDto)
+    {
+        var result = await _userService.UpdateAsync(userDto);
+        if (result.IsSuccess)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);
+    }
+
+    [HttpGet]
+    [Route("api/v1/user/get/{id}")]
+    public async Task<ActionResult> Get(long id)
+    {
+        var result = await _userService.GetByIdAsync(id);
+        if (result.IsSuccess)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);
+    }
 }

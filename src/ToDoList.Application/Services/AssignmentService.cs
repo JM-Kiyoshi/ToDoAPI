@@ -1,6 +1,5 @@
 using AutoMapper;
 using ToDoList.Application.DTOs;
-using ToDoList.Application.DTOs.Validations;
 using ToDoList.Application.Services.Interfaces;
 using ToDoList.Domain.Entities;
 using ToDoList.Domain.Interfaces;
@@ -24,11 +23,6 @@ public class AssignmentService : IAssignmentService
         {
             return ResultService.Fail<AssignmentDTO>("Object is null");
         }
-        var result = new AssignmentDTOValidator().Validate(assignmentDto);
-        if (!result.IsValid)
-        {
-            return ResultService.RequestError<AssignmentDTO>("Validation Error", result);
-        }
         
         var assignment = _mapper.Map<Assignment>(assignmentDto);
         var data = await _assignmentRepository.CreateAsync(assignment);
@@ -42,11 +36,6 @@ public class AssignmentService : IAssignmentService
             return ResultService.Fail<AssignmentDTO>("Object is null");
         }
         
-        var result = new AssignmentDTOValidator().Validate(assignmentDto);
-        if (!result.IsValid)
-        {
-            return ResultService.RequestError<AssignmentDTO>("Validation Error", result);
-        }
         var assignment = await _assignmentRepository.GetByIdAsync(assignmentDto.Id);
         if (assignment == null)
         {

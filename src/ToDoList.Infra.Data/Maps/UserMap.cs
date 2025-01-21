@@ -30,8 +30,8 @@ public class UserMap : IEntityTypeConfiguration<User>
         
         builder.Property(x => x.Password)
             .HasColumnName("Password")
-            .HasColumnType("VARCHAR(16)")
-            .HasMaxLength(16);
+            .HasColumnType("VARCHAR(255)")
+            .HasMaxLength(255);
         
         builder.Property(x => x.CreatedAt)
             .ValueGeneratedOnAdd()

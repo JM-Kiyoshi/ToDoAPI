@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ToDoList.Application.Mappings;
 using ToDoList.Application.Services;
 using ToDoList.Application.Services.Interfaces;
+using ToDoList.Domain.Entities;
 using ToDoList.Domain.Interfaces;
 using ToDoList.Infra.Data.Context;
 using ToDoList.Infra.Data.Repositories;
@@ -27,6 +29,7 @@ public static class DependencyInjection
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IAssignmentService, AssignmentService>();
         services.AddScoped<IAssignmentListService, AssignmentListService>();
+        services.AddScoped<PasswordHasher<User>>();
         return services;
     }
 }

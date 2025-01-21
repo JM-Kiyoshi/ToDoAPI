@@ -30,18 +30,14 @@ public class UserValidator : AbstractValidator<User>
             .MinimumLength(11)
             .MaximumLength(180)
             .WithMessage("Email must be between 11 and 180 characters.");
-        
+
         RuleFor(x => x.Password)
             .NotNull()
             .NotEmpty()
             .MinimumLength(6)
-            .MaximumLength(16)
-            .WithMessage("Password must be between 6 and 16 characters.")
-            
-            .Matches(@"[0-9]+").WithMessage("Password must contain at least one number.")
-            .Matches(@"[A-Z]+").WithMessage("Password must contain at least one upper case letter.")
-            .Matches(@"[a-z]+").WithMessage("Password must contain at least one lower case letter.")
-            .Matches(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]+").WithMessage("Password must contain at least one symbol (@!#%...)");
-            
+            .MaximumLength(255)
+            .WithMessage("Password must be between 6 and 16 characters.");
+
+
     }
 }

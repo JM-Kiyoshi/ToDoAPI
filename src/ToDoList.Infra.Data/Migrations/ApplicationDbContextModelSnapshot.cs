@@ -146,8 +146,8 @@ namespace ToDoList.Infra.Data.Migrations
                         .HasColumnName("Name");
 
                     b.Property<string>("Password")
-                        .HasMaxLength(16)
-                        .HasColumnType("VARCHAR(16)")
+                        .HasMaxLength(255)
+                        .HasColumnType("VARCHAR(255)")
                         .HasColumnName("Password");
 
                     b.Property<DateTime>("UpdatedAt")

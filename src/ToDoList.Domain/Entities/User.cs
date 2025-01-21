@@ -27,7 +27,7 @@ public class User : Base
         Validate();
     }
 
-    private void Validate()
+    public void Validate()
     {
         var validator = new UserValidator();
         var validation = validator.Validate(this);
