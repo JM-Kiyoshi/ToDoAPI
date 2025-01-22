@@ -27,10 +27,6 @@ public class AssignmentValidator : AbstractValidator<Assignment>
             .NotEmpty()
             .WithMessage("UserId is required");
 
-        RuleFor(x => x.ConcludedAt)
-            .GreaterThanOrEqualTo(x => x.CreatedAt)
-            .WithMessage("The date must be greater than or equal to created date");
-
         RuleFor(x => x.Deadline)
             .NotNull()
             .NotEmpty()

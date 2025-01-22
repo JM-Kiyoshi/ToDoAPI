@@ -7,8 +7,5 @@ public class AssignmentDTO
     public long UserId { get; set; }
     public long AssignmentListId { get; set; }
     public bool Concluded { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
-    public DateTime ConcludedAt { get; set; }
     public DateTime Deadline { get; set; }
 }

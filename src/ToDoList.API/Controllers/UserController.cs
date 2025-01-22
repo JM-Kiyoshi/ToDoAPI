@@ -51,4 +51,28 @@ public class UserController : ControllerBase
         }
         return BadRequest(result);
     }
+
+    [HttpGet]
+    [Route("api/v1/user/getAll")]
+    public async Task<ActionResult> GetAll()
+    {
+        var result = await _userService.GetAllAsync();
+        if (result.IsSuccess)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);
+    }
+
+    [HttpDelete]
+    [Route("api/v1/user/delete/{id}")]
+    public async Task<ActionResult> Delete(long id)
+    {
+        var result = await _userService.DeleteAsync(id);
+        if (result.IsSuccess)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);
+    }
 }
