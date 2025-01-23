@@ -85,33 +85,10 @@ public class AssignmentService : IAssignmentService
         return ResultService.OK(_mapper.Map<ICollection<AssignmentDTO>>(assignments));
     }
 
-    public async Task<ResultService<AssignmentDTO>> SearchByDescriptionAsync(string description, long userId)
+    public async Task<ResultService<ICollection<AssignmentDTO>>> SearchByDescriptionAsync(string description, long userId)
     {
         var assignments = await _assignmentRepository.SearchByDescriptionAsync(description, userId);
-        return ResultService.OK(_mapper.Map<AssignmentDTO>(assignments));
+        return ResultService.OK(_mapper.Map<ICollection<AssignmentDTO>>(assignments));
     }
-
-    public async Task<ResultService<AssignmentDTO>> EditConcludedStatusAsync(long assignmentId, bool concludedStatus)
-    {
-        var result = await _assignmentRepository.EditConcludedStatusAsync(assignmentId, concludedStatus);
-        return ResultService.OK(_mapper.Map<AssignmentDTO>(result));
-    }
-
-    public async Task<ResultService<AssignmentDTO>> EditDescriptionAsync(long assignmentId, string description)
-    {
-        var result = await _assignmentRepository.EditDescriptionAsync(assignmentId, description);
-        return ResultService.OK(_mapper.Map<AssignmentDTO>(result));
-    }
-
-    public async Task<ResultService<AssignmentDTO>> EditConcludedAtAsync(long assignmentId, DateTime concludedAt)
-    {
-        var result = await _assignmentRepository.EditConcludedAtAsync(assignmentId, concludedAt);
-        return ResultService.OK(_mapper.Map<AssignmentDTO>(result));
-    }
-
-    public async Task<ResultService<AssignmentDTO>> EditDeadlineAsync(long assignmentId, DateTime deadline)
-    {
-        var result = await _assignmentRepository.EditDeadlineAsync(assignmentId, deadline);
-        return ResultService.OK(_mapper.Map<AssignmentDTO>(result));
-    }
+    
 }

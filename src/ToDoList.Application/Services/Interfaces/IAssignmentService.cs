@@ -11,9 +11,6 @@ public interface IAssignmentService
     Task<ResultService<ICollection<AssignmentDTO>>> GetAllAsync();
     Task<ResultService<ICollection<AssignmentDTO>>> SearchByUserIdAsync(long userId);
     Task<ResultService<ICollection<AssignmentDTO>>> SearchByConcludedStatusAsync(bool concludedStatus, long userId);
-    Task<ResultService<AssignmentDTO>> SearchByDescriptionAsync(string description, long userId);
-    Task<ResultService<AssignmentDTO>> EditConcludedStatusAsync(long assignmentId, bool concludedStatus);
-    Task<ResultService<AssignmentDTO>> EditDescriptionAsync(long assignmentId, string description);
-    Task<ResultService<AssignmentDTO>> EditConcludedAtAsync(long assignmentId, DateTime concludedAt);
-    Task<ResultService<AssignmentDTO>> EditDeadlineAsync(long assignmentId, DateTime deadline);
+    Task<ResultService<ICollection<AssignmentDTO>>> SearchByDescriptionAsync(string description, long userId);
+    
 }

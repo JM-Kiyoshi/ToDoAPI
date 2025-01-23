@@ -10,5 +10,4 @@ public interface IAssignmentListService
     Task<ResultService<AssignmentListDTO>> GetByIdAsync(long id);
     Task<ResultService<ICollection<AssignmentListDTO>>> GetAllAsync();
     Task<ResultService<ICollection<AssignmentListDTO>>> GetAllByUserIdAsync(long userId);
-    Task<ResultService<AssignmentListDTO>> EditNameAsync(long id, string name);
 }

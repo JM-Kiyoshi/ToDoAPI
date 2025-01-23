@@ -88,10 +88,4 @@ public class AssignmentListService : IAssignmentListService
         }
         return ResultService.OK(_mapper.Map<ICollection<AssignmentListDTO>>(assignmentLists));
     }
-
-    public async Task<ResultService<AssignmentListDTO>> EditNameAsync(long id, string name)
-    {
-        await _assignmentListRepository.EditNameAsync(id, name);
-        return ResultService.OK(_mapper.Map<AssignmentListDTO>(await _assignmentListRepository.GetByIdAsync(id)));
-    }
 }

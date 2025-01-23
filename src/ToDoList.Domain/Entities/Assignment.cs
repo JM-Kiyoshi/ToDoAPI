@@ -6,26 +6,24 @@ namespace ToDoList.Domain.Entities;
 public class Assignment : Base
 {
     public string Description { get; private set; }
-    public long UserId { get; private set; }
-    public long AssignmentListId { get; private set; }
+    public long UserId { get; set; }
+    public long? AssignmentListId { get; set; }
     public bool Concluded { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
     public DateTime ConcludedAt { get; private set; }
-    public DateTime Deadline { get; private set; }
+    public DateTime? Deadline { get; private set; }
 
     public User User { get; set; }
-    public AssignmentList AssignmentList { get; set; }
+    public virtual AssignmentList AssignmentList { get; set; }
 
 
-    public Assignment(string description, long userId, long assignmentListId, bool concluded, DateTime deadline)
+    public Assignment(string description, long userId, bool concluded)
     {
         Description = description;
         UserId = userId;
-        AssignmentListId = assignmentListId;
         CreatedAt = DateTime.Now;
         Concluded = concluded;
-        Deadline = deadline;
         _errors = new List<string>();
         Validate();
     }

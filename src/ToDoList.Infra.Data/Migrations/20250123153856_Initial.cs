@@ -25,8 +25,12 @@ namespace ToDoList.Infra.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "VARCHAR(180)", maxLength: 180, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Password = table.Column<string>(type: "VARCHAR(16)", maxLength: 16, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Password = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CreatedAt = table.Column<DateTime>(type: "DATETIME", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UpdatedAt = table.Column<DateTime>(type: "DATETIME", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn)
                 },
                 constraints: table =>
                 {
@@ -38,16 +42,19 @@ namespace ToDoList.Infra.Data.Migrations
                 name: "AssignmentList",
                 columns: table => new
                 {
-                    IdAssignmentList = table.Column<long>(type: "BIGINT", nullable: false)
+                    Id = table.Column<long>(type: "BIGINT", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "VARCHAR(50)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UserId = table.Column<long>(type: "BIGINT", nullable: false),
-                    AssignmentId = table.Column<long>(type: "BIGINT", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "DATETIME", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UpdatedAt = table.Column<DateTime>(type: "DATETIME", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AssignmentList", x => x.IdAssignmentList);
+                    table.PrimaryKey("PK_AssignmentList", x => x.Id);
                     table.ForeignKey(
                         name: "FK_AssignmentList_User_UserId",
                         column: x => x.UserId,
@@ -66,10 +73,14 @@ namespace ToDoList.Infra.Data.Migrations
                     Description = table.Column<string>(type: "VARCHAR(500)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UserId = table.Column<long>(type: "BIGINT", nullable: false),
-                    AssignmentListId = table.Column<long>(type: "BIGINT", nullable: false),
-                    IsConcluded = table.Column<bool>(type: "TINYINT(1)", nullable: false),
+                    AssignmentListId = table.Column<long>(type: "BIGINT", nullable: true),
+                    IsConcluded = table.Column<bool>(type: "TINYINT(1)", nullable: false, defaultValue: false),
+                    CreatedAt = table.Column<DateTime>(type: "DATETIME", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UpdatedAt = table.Column<DateTime>(type: "DATETIME", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
                     ConcludedAt = table.Column<DateTime>(type: "DATETIME", nullable: false),
-                    Deadline = table.Column<DateTime>(type: "DATETIME", nullable: false)
+                    Deadline = table.Column<DateTime>(type: "DATETIME", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,15 +89,16 @@ namespace ToDoList.Infra.Data.Migrations
                         name: "FK_Assignments_AssignmentList_AssignmentListId",
                         column: x => x.AssignmentListId,
                         principalTable: "AssignmentList",
-                        principalColumn: "IdAssignmentList",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Assignments_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AssignmentList_AssignmentId",
-                table: "AssignmentList",
-                column: "AssignmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AssignmentList_UserId",
@@ -98,22 +110,15 @@ namespace ToDoList.Infra.Data.Migrations
                 table: "Assignments",
                 column: "AssignmentListId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_AssignmentList_Assignments_AssignmentId",
-                table: "AssignmentList",
-                column: "AssignmentId",
-                principalTable: "Assignments",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+            migrationBuilder.CreateIndex(
+                name: "IX_Assignments_UserId",
+                table: "Assignments",
+                column: "UserId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_AssignmentList_Assignments_AssignmentId",
-                table: "AssignmentList");
-
             migrationBuilder.DropTable(
                 name: "Assignments");
 

@@ -5,15 +5,15 @@ namespace ToDoList.Domain.Entities;
 
 public class User : Base
 {
-    public string Name { get; private set; }
-    public string Email { get; private set; }
-    public string Password { get; private set; }
+    public string Name { get; private set; } = null!;
+    public string Email { get; private set; } = null!;
+    public string Password { get; private set; } = null!;
     public DateTime CreatedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
     
     
-    public ICollection<Assignment> Assignments { get; set; }
-    public ICollection<AssignmentList> AssignmentLists { get; set; }
+    public ICollection<Assignment> Assignments { get; set; } = null!;
+    public ICollection<AssignmentList> AssignmentLists { get; set; } = null!;
 
     public User(string name, string email, string password)
     {

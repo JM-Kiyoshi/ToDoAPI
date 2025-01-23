@@ -11,7 +11,6 @@ public class AssignmentList : Base
     public DateTime UpdatedAt { get; private set; }
     
     public User User { get; set; }
-    public Assignment Assignment { get; set; }
     public ICollection<Assignment> Assignments { get; set; }
 
     public AssignmentList(string name, long userId)

@@ -1,12 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HBKXGmavUbc=",
+  "dgSpecHash": "SRK95tyQ3JM=",
   "success": true,
-  "projectFilePath": "/home/julianomagalhaes/RiderProjects/ToDoAPI/src/ToDoList.Domain/ToDoList.Domain.csproj",
+  "projectFilePath": "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Domain/ToDoList.Domain.csproj",
   "expectedPackageFiles": [
-    "/home/julianomagalhaes/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",
-    "/home/julianomagalhaes/.nuget/packages/microsoft.netcore.app.ref/8.0.12/microsoft.netcore.app.ref.8.0.12.nupkg.sha512",
-    "/home/julianomagalhaes/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.12/microsoft.aspnetcore.app.ref.8.0.12.nupkg.sha512"
+    "/home/juliano/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512"
   ],
   "logs": []
 }

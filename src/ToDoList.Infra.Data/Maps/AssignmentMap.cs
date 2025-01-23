@@ -2,8 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ToDoList.Domain.Entities;
 
-namespace ToDoList.Infra.Data.Maps;
-
 public class AssignmentMap : IEntityTypeConfiguration<Assignment>
 {
     public void Configure(EntityTypeBuilder<Assignment> builder)
@@ -26,9 +24,10 @@ public class AssignmentMap : IEntityTypeConfiguration<Assignment>
             .HasColumnType("BIGINT");
         
         builder.Property(x => x.AssignmentListId)
+            .IsRequired(false)
             .HasColumnName("AssignmentListId")
             .HasColumnType("BIGINT");
-        
+
         builder.Property(x => x.Deadline)
             .HasColumnName("Deadline")
             .HasColumnType("DATETIME");
@@ -49,6 +48,10 @@ public class AssignmentMap : IEntityTypeConfiguration<Assignment>
         builder.Property(x => x.UpdatedAt)
             .ValueGeneratedOnAddOrUpdate()
             .HasColumnType("DATETIME");
-
+        
+        builder.HasOne(x => x.AssignmentList)
+            .WithMany(p => p.Assignments)
+            .HasForeignKey(x => x.AssignmentListId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

@@ -50,19 +50,19 @@
     ]
   },
   "packageFolders": {
-    "/home/julianomagalhaes/.nuget/packages/": {}
+    "/home/juliano/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/julianomagalhaes/RiderProjects/ToDoAPI/src/ToDoList.Domain/ToDoList.Domain.csproj",
+      "projectUniqueName": "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Domain/ToDoList.Domain.csproj",
       "projectName": "ToDoList.Domain",
-      "projectPath": "/home/julianomagalhaes/RiderProjects/ToDoAPI/src/ToDoList.Domain/ToDoList.Domain.csproj",
-      "packagesPath": "/home/julianomagalhaes/.nuget/packages/",
-      "outputPath": "/home/julianomagalhaes/RiderProjects/ToDoAPI/src/ToDoList.Domain/obj/",
+      "projectPath": "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Domain/ToDoList.Domain.csproj",
+      "packagesPath": "/home/juliano/.nuget/packages/",
+      "outputPath": "/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/julianomagalhaes/.nuget/NuGet/NuGet.Config"
+        "/home/juliano/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -107,22 +107,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.12, 8.0.12]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.12, 8.0.12]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

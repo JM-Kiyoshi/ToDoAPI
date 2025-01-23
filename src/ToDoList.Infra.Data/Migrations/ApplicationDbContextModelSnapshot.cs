@@ -31,12 +31,9 @@ namespace ToDoList.Infra.Data.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("AssignmentListId")
+                    b.Property<long?>("AssignmentListId")
                         .HasColumnType("BIGINT")
                         .HasColumnName("AssignmentListId");
-
-                    b.Property<long?>("AssignmentListId1")
-                        .HasColumnType("BIGINT");
 
                     b.Property<bool>("Concluded")
                         .ValueGeneratedOnAdd()
@@ -54,7 +51,7 @@ namespace ToDoList.Infra.Data.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<DateTime>("CreatedAt"));
 
-                    b.Property<DateTime>("Deadline")
+                    b.Property<DateTime?>("Deadline")
                         .HasColumnType("DATETIME")
                         .HasColumnName("Deadline");
 
@@ -76,9 +73,6 @@ namespace ToDoList.Infra.Data.Migrations
 
                     b.HasIndex("AssignmentListId");
 
-                    b.HasIndex("AssignmentListId1")
-                        .IsUnique();
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Assignments", (string)null);
@@ -89,7 +83,7 @@ namespace ToDoList.Infra.Data.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("BIGINT")
-                        .HasColumnName("IdAssignmentList");
+                        .HasColumnName("Id");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
 
@@ -166,17 +160,12 @@ namespace ToDoList.Infra.Data.Migrations
                     b.HasOne("ToDoList.Domain.Entities.AssignmentList", "AssignmentList")
                         .WithMany("Assignments")
                         .HasForeignKey("AssignmentListId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("ToDoList.Domain.Entities.AssignmentList", null)
-                        .WithOne("Assignment")
-                        .HasForeignKey("ToDoList.Domain.Entities.Assignment", "AssignmentListId1");
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("ToDoList.Domain.Entities.User", "User")
                         .WithMany("Assignments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AssignmentList");
@@ -189,7 +178,7 @@ namespace ToDoList.Infra.Data.Migrations
                     b.HasOne("ToDoList.Domain.Entities.User", "User")
                         .WithMany("AssignmentLists")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -197,8 +186,6 @@ namespace ToDoList.Infra.Data.Migrations
 
             modelBuilder.Entity("ToDoList.Domain.Entities.AssignmentList", b =>
                 {
-                    b.Navigation("Assignment");
-
                     b.Navigation("Assignments");
                 });
 

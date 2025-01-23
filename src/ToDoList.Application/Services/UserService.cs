@@ -118,22 +118,4 @@ public class UserService : IUserService
         }
         return ResultService.OK(_mapper.Map<ICollection<UserDTO>>(users));
     }
-
-    public async Task<ResultService<UserDTO>> EditEmailAsync(string currentEmail, string password, string newEmail)
-    {
-        var user = await _userRepository.EditEmailAsync(currentEmail, password, newEmail);
-        return ResultService.OK(_mapper.Map<UserDTO>(user));
-    }
-
-    public async Task<ResultService<UserDTO>> EditNameAsync(string email, string password, string newName)
-    {
-        var user = await _userRepository.EditNameAsync(email, password, newName);
-        return ResultService.OK(_mapper.Map<UserDTO>(user));
-    }
-
-    public async Task<ResultService<UserDTO>> EditPasswordAsync(string email, string password, string newPassword)
-    {
-        var user = await _userRepository.EditPasswordAsync(email, password, newPassword);
-        return ResultService.OK(_mapper.Map<UserDTO>(user));
-    }
 }

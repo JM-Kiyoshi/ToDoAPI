@@ -75,4 +75,43 @@ public class UserController : ControllerBase
         }
         return BadRequest(result);
     }
+
+    [HttpGet]
+    [Route("api/v1/user/getByEmail/{email}")]
+    public async Task<ActionResult> GetByEmail(string email)
+    {
+        var result = await _userService.GetByEmailAsync(email);
+        if (result.IsSuccess)
+        {
+            return Ok(result);
+        }
+
+        return BadRequest(result);
+    }
+
+    [HttpGet]
+    [Route("api/v1/user/searchByName/{name}")]
+    public async Task<ActionResult> SearchByName(string name)
+    {
+        var result = await _userService.SearchByNameAsync(name);
+        if (result.IsSuccess)
+        {
+            return Ok(result);
+        }
+
+        return BadRequest(result);
+    }
+
+    [HttpGet]
+    [Route("api/v1/user/searchByEmail/{email}")]
+    public async Task<ActionResult> SearchByEmail(string email)
+    {
+        var result = await _userService.SearchByEmailAsync(email);
+        if (result.IsSuccess)
+        {
+            return Ok(result);
+        }
+
+        return BadRequest(result);
+    }
 }

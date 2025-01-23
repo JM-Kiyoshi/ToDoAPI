@@ -2,8 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ToDoList.Domain.Entities;
 
-namespace ToDoList.Infra.Data.Maps;
-
 public class AssignmentListMap : IEntityTypeConfiguration<AssignmentList>
 {
     public void Configure(EntityTypeBuilder<AssignmentList> builder)
@@ -11,9 +9,9 @@ public class AssignmentListMap : IEntityTypeConfiguration<AssignmentList>
         builder.ToTable("AssignmentList");
         
         builder.HasKey(x => x.Id);
-
+        
         builder.Property(x => x.Id)
-            .HasColumnName("IdAssignmentList")
+            .HasColumnName("Id")
             .HasColumnType("BIGINT")
             .UseMySqlIdentityColumn();
 
@@ -34,8 +32,8 @@ public class AssignmentListMap : IEntityTypeConfiguration<AssignmentList>
             .HasColumnType("DATETIME");
 
         builder.HasMany(x => x.Assignments)
-            .WithOne(c => c.AssignmentList)
-            .HasForeignKey(c => c.AssignmentListId)
+            .WithOne(p => p.AssignmentList)
+            .HasForeignKey(p => p.AssignmentListId)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }
