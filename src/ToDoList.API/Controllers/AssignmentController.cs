@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Application.DTOs;
 using ToDoList.Application.Services.Interfaces;
@@ -17,6 +18,7 @@ public class AssignmentController : ControllerBase
 
     [HttpPost]
     [Route("api/v1/assignment/create")]
+    [Authorize]
     public async Task<ActionResult> Post([FromBody] AssignmentDTO assignmentDto)
     {
         var result = await _assignmentService.CreateAsync(assignmentDto);
@@ -29,6 +31,7 @@ public class AssignmentController : ControllerBase
 
     [HttpPut]
     [Route("api/v1/assignment/update")]
+    [Authorize]
     public async Task<ActionResult> Put([FromBody] AssignmentDTO assignmentDto)
     {
         var result = await _assignmentService.UpdateAsync(assignmentDto);
@@ -41,6 +44,7 @@ public class AssignmentController : ControllerBase
 
     [HttpDelete]
     [Route("api/v1/assignment/delete")]
+    [Authorize]
     public async Task<ActionResult> Delete(long id)
     {
         var result = await _assignmentService.DeleteAsync(id);
@@ -54,6 +58,7 @@ public class AssignmentController : ControllerBase
 
     [HttpGet]
     [Route("api/v1/assignment/getById{id}")]
+    [Authorize]
     public async Task<ActionResult> GetById(long id)
     {
         var result = await _assignmentService.GetByIdAsync(id);
@@ -66,6 +71,7 @@ public class AssignmentController : ControllerBase
 
     [HttpGet]
     [Route("api/v1/assignment/searchByUserId/{userId}")]
+    [Authorize]
     public async Task<ActionResult> SearchByUserId(long userId)
     {
         var result = await _assignmentService.SearchByUserIdAsync(userId);
@@ -79,6 +85,7 @@ public class AssignmentController : ControllerBase
 
     [HttpGet]
     [Route("api/v1/assignment/searchByConcludedStatus/{concludedStatus}/{userId}")]
+    [Authorize]
     public async Task<ActionResult> SearchByConcludedStatus(bool concludedStatus, long userId)
     {
         var result = await _assignmentService.SearchByConcludedStatusAsync(concludedStatus, userId);
@@ -92,6 +99,7 @@ public class AssignmentController : ControllerBase
 
     [HttpGet]
     [Route("api/v1/assignment/searchByDescription/{description}/{userId}")]
+    [Authorize]
     public async Task<ActionResult> SearchByDescription(string description, long userId)
     {
         var result = await _assignmentService.SearchByDescriptionAsync(description, userId);

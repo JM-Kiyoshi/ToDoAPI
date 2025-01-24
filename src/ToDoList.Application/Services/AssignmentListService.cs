@@ -88,4 +88,23 @@ public class AssignmentListService : IAssignmentListService
         }
         return ResultService.OK(_mapper.Map<ICollection<AssignmentListDTO>>(assignmentLists));
     }
+
+    public async Task<ResultService<AssignmentListDTO>> AddAssignmentAsync(long id, AssignmentDTO assignmentDto)
+    {
+        await _assignmentListRepository.AddAsync(id, _mapper.Map<Assignment>(assignmentDto));
+        return ResultService.OK(_mapper.Map<AssignmentListDTO>(assignmentDto));
+    }
+
+    public async Task<ResultService<AssignmentListDTO>> AddAnExistingAssignmentAsync(long id, long assignmentId)
+    {
+        await _assignmentListRepository.AddAnExistingAssignmentAsync(id, assignmentId);
+        var assignmentList = await _assignmentListRepository.GetByIdAsync(id);
+        return ResultService.OK(_mapper.Map<AssignmentListDTO>(assignmentList));
+    }
+
+    public async Task<ResultService<ICollection<AssignmentDTO>>> GetAllAssigmentsByListIdAsync(long listId, long userId)
+    {
+        var result = await _assignmentListRepository.GetAllAssignmentsByListIdAsync(listId, userId);
+        return ResultService.OK(_mapper.Map<ICollection<AssignmentDTO>>(result));
+    }
 }

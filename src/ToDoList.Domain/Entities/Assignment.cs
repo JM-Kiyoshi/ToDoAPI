@@ -71,4 +71,11 @@ public class Assignment : Base
         Validate();
         UpdatedAt = DateTime.Now;
     }
+
+    public void ChangeListId(long listId)
+    {
+        AssignmentListId = listId;
+        Validate();
+        UpdatedAt = DateTime.Now;
+    }
 }

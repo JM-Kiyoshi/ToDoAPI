@@ -197,3 +197,12 @@
 /home/juliano/RiderProjects/ToDoAPI/src/ToDoList.API/bin/Debug/net8.0/runtimes/osx-x64/native/libsodium.dylib
 /home/juliano/RiderProjects/ToDoAPI/src/ToDoList.API/bin/Debug/net8.0/runtimes/win-x64/native/libsodium.dll
 /home/juliano/RiderProjects/ToDoAPI/src/ToDoList.API/bin/Debug/net8.0/runtimes/win-x86/native/libsodium.dll
+/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.API/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.API/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.API/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.API/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.API/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.API/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.API/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.API/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/home/juliano/RiderProjects/ToDoAPI/src/ToDoList.API/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll

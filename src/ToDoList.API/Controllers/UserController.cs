@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Application.DTOs;
 using ToDoList.Application.Services.Interfaces;
@@ -17,6 +18,7 @@ public class UserController : ControllerBase
 
     [HttpPost]
     [Route("api/v1/user/create")]
+    [Authorize]
     public async Task<ActionResult> Post([FromBody] UserDTO userDto)
     {
         var result = await _userService.CreateAsync(userDto);
@@ -30,6 +32,7 @@ public class UserController : ControllerBase
 
     [HttpPut]
     [Route("api/v1/user/update")]
+    [Authorize]
     public async Task<ActionResult> Put([FromBody] UserDTO userDto)
     {
         var result = await _userService.UpdateAsync(userDto);
@@ -42,6 +45,7 @@ public class UserController : ControllerBase
 
     [HttpGet]
     [Route("api/v1/user/get/{id}")]
+    [Authorize]
     public async Task<ActionResult> Get(long id)
     {
         var result = await _userService.GetByIdAsync(id);
@@ -54,6 +58,7 @@ public class UserController : ControllerBase
 
     [HttpGet]
     [Route("api/v1/user/getAll")]
+    [Authorize]
     public async Task<ActionResult> GetAll()
     {
         var result = await _userService.GetAllAsync();
@@ -66,6 +71,7 @@ public class UserController : ControllerBase
 
     [HttpDelete]
     [Route("api/v1/user/delete/{id}")]
+    [Authorize]
     public async Task<ActionResult> Delete(long id)
     {
         var result = await _userService.DeleteAsync(id);
@@ -78,6 +84,7 @@ public class UserController : ControllerBase
 
     [HttpGet]
     [Route("api/v1/user/getByEmail/{email}")]
+    [Authorize]
     public async Task<ActionResult> GetByEmail(string email)
     {
         var result = await _userService.GetByEmailAsync(email);
@@ -91,6 +98,7 @@ public class UserController : ControllerBase
 
     [HttpGet]
     [Route("api/v1/user/searchByName/{name}")]
+    [Authorize]
     public async Task<ActionResult> SearchByName(string name)
     {
         var result = await _userService.SearchByNameAsync(name);
@@ -104,6 +112,7 @@ public class UserController : ControllerBase
 
     [HttpGet]
     [Route("api/v1/user/searchByEmail/{email}")]
+    [Authorize]
     public async Task<ActionResult> SearchByEmail(string email)
     {
         var result = await _userService.SearchByEmailAsync(email);

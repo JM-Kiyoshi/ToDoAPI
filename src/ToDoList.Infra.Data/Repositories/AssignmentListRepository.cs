@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ToDoList.Domain.Entities;
+using ToDoList.Domain.Exceptions;
 using ToDoList.Domain.Interfaces;
 using ToDoList.Infra.Data.Context;
 
@@ -28,5 +29,49 @@ public class AssignmentListRepository : BaseRepository<AssignmentList>, IAssignm
             assignmentList.ChangeName(name);
         }
         return assignmentList;
+    }
+
+    public async Task<AssignmentList> AddAsync(long id, Assignment assignment)
+    {
+        var assignmentList = await _context.AssignmentLists.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        if (assignmentList == null)
+        {
+            throw new DomainException("Assignment list not found");
+        }
+        
+        assignmentList.Assignments.Add(assignment);
+        
+        return assignmentList;
+    }
+
+    public async Task<AssignmentList> AddAnExistingAssignmentAsync(long listId, long taskId)
+    {
+        var assignmentList = await _context.AssignmentLists.Include(x=> x.Assignments).FirstOrDefaultAsync(x => x.Id == listId);
+        var assignment = await _context.Assignments.FirstOrDefaultAsync(x => x.Id == taskId);
+        assignment.ChangeListId(assignmentList.Id);
+        if (assignmentList == null || assignment == null)
+        {
+            throw new DomainException("Assignment list or task not found");
+        }
+        if (!assignmentList.Assignments.Contains(assignment))
+        {
+            assignmentList.Assignments.Add(assignment);
+        }
+        await _context.SaveChangesAsync();
+        return assignmentList;
+    }
+
+    public async Task<ICollection<Assignment>> GetAllAssignmentsByListIdAsync(long listId, long userid)
+    {
+        var assignmentList = await _context.AssignmentLists
+            .AsNoTracking()
+            .Include(x => x.Assignments)
+            .Where(x => x.Id == listId && x.UserId == userid).FirstOrDefaultAsync();
+        if (assignmentList == null)
+        {
+            throw new DomainException("Assignment list not found");
+        }
+
+        return assignmentList.Assignments;
     }
 }
