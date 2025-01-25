@@ -1,6 +1,8 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using ToDoList.Application.DTOs;
 using ToDoList.Application.Services.Interfaces;
+using ToDoList.Application.Token;
 using ToDoList.Domain.Entities;
 using ToDoList.Domain.Interfaces;
 
@@ -10,23 +12,35 @@ public class AssignmentListService : IAssignmentListService
 {
     private readonly IAssignmentListRepository _assignmentListRepository;
     private readonly IMapper _mapper;
+    private readonly IInfoTokenUser _infoTokenUser;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public AssignmentListService(IAssignmentListRepository assignmentListRepository, IMapper mapper)
+    public AssignmentListService(IAssignmentListRepository assignmentListRepository, IMapper mapper, IInfoTokenUser infoTokenUser, IHttpContextAccessor httpContextAccessor)
     {
         _assignmentListRepository = assignmentListRepository;
         _mapper = mapper;
+        _infoTokenUser = infoTokenUser;
+        _httpContextAccessor = httpContextAccessor;
     }
 
-    public async Task<ResultService<AssignmentListDTO>> CreateAsync(AssignmentListDTO assignmentListDto)
+    public async Task<ResultService<AssignmentListDTO>> CreateAsync(string name, string token)
     {
-        if (assignmentListDto == null)
+        if (string.IsNullOrEmpty(name))
         {
-            return ResultService.Fail<AssignmentListDTO>("Object is null");
+            return ResultService.Fail<AssignmentListDTO>("Assignment list name cannot be empty");
         }
 
-        var assignmentList = _mapper.Map<AssignmentList>(assignmentListDto);
-        var data = await _assignmentListRepository.CreateAsync(assignmentList);
-        return ResultService.OK(_mapper.Map<AssignmentListDTO>(data));
+        var userInfo = new InfoTokenUser(_httpContextAccessor);
+        var userId = userInfo.Id;
+
+        if (userId <= 0)
+        {
+            return ResultService.Fail<AssignmentListDTO>("User id is invalid");
+        }
+
+        var assignmentList = new AssignmentList(name, userId);
+        var result = await _assignmentListRepository.CreateAsync(assignmentList);
+        return ResultService.OK(_mapper.Map<AssignmentListDTO>(result));
     }
 
     public async Task<ResultService<AssignmentListDTO>> UpdateAsync(AssignmentListDTO assignmentListDto)

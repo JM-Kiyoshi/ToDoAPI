@@ -17,11 +17,11 @@ public class AssignmentListController : ControllerBase
     }
 
     [HttpPost]
-    [Route("api/v1/assignment-list/create")]
+    [Route("api/v1/assignment-list/create/{ListName}/{Token}")]
     [Authorize]
-    public async Task<ActionResult> Post([FromBody] AssignmentListDTO assignmentList)
+    public async Task<ActionResult> Post(string ListName, string Token)
     {
-        var result = await _assignmentListService.CreateAsync(assignmentList);
+        var result = await _assignmentListService.CreateAsync(ListName, Token);
         if (result.IsSuccess)
         {
             return Ok(result);

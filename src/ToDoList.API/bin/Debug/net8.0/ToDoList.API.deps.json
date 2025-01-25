@@ -373,6 +373,7 @@
         "dependencies": {
           "AutoMapper": "13.0.1",
           "FluentValidation": "11.11.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.12",
           "ScottBrady91.AspNetCore.Identity.Argon2PasswordHasher": "1.4.0",
           "ToDoList.Domain": "1.0.0"
         },

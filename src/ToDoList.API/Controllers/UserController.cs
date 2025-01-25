@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Application.DTOs;
 using ToDoList.Application.Services.Interfaces;
+using ToDoList.Application.Token;
 
 namespace ToDoList.API.Controllers;
 
@@ -10,15 +11,28 @@ namespace ToDoList.API.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
+    private readonly IInfoTokenUser _infoTokenUser;
 
-    public UserController(IUserService userService)
+    public UserController(IUserService userService, IInfoTokenUser infoTokenUser)
     {
         _userService = userService;
+        _infoTokenUser = infoTokenUser;
     }
 
     [HttpPost]
+    [Route("api/v1/user/login")]
+    public async Task<ActionResult> Login([FromForm] string email, [FromForm] string password)
+    {
+        var user = await _userService.Login(email, password);
+        if (user == null)
+        {
+            return BadRequest(new {message = "Email or password is incorrect"});
+        }
+        return Ok(user);
+    }
+    
+    [HttpPost]
     [Route("api/v1/user/create")]
-    [Authorize]
     public async Task<ActionResult> Post([FromBody] UserDTO userDto)
     {
         var result = await _userService.CreateAsync(userDto);
@@ -123,4 +137,5 @@ public class UserController : ControllerBase
 
         return BadRequest(result);
     }
+    
 }

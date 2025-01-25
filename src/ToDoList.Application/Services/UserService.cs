@@ -1,9 +1,12 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using ToDoList.API.Token;
 using ToDoList.Application.DTOs;
 using ToDoList.Application.Services.Interfaces;
+using ToDoList.Application.Token;
 using ToDoList.Domain.Entities;
 using ToDoList.Domain.Interfaces;
+
 
 
 namespace ToDoList.Application.Services;
@@ -13,12 +16,14 @@ public class UserService : IUserService
     private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
     private readonly IPasswordHasher<User> _passwordHasher;
+    private readonly ITokenGenerator _tokenGenerator;
 
-    public UserService(IUserRepository userRepository, IMapper mapper, PasswordHasher<User> passwordHasher)
+    public UserService(IUserRepository userRepository, IMapper mapper, PasswordHasher<User> passwordHasher, ITokenGenerator tokenGenerator)
     {
         _userRepository = userRepository;
         _mapper = mapper;
         _passwordHasher = passwordHasher;
+        _tokenGenerator = tokenGenerator;
     }
     public async Task<ResultService<UserDTO>> CreateAsync(UserDTO userDto)
     {
@@ -118,4 +123,35 @@ public class UserService : IUserService
         }
         return ResultService.OK(_mapper.Map<ICollection<UserDTO>>(users));
     }
+
+    public async Task<TokenDTO> Login(string email, string password)
+    {
+        var obj = await _userRepository.GetByEmailAsync(email);
+        if (obj == null)
+        {
+            return new TokenDTO
+            {
+                AccessToken = null,
+                Expiration = DateTime.MinValue
+            };
+        }
+
+        var passwordValid = _passwordHasher.VerifyHashedPassword(obj, obj.Password, password);
+        if (passwordValid != PasswordVerificationResult.Success)
+        {
+            return new TokenDTO
+            {
+                AccessToken = null,
+                Expiration = DateTime.MinValue
+            };
+        }
+
+        var token = _tokenGenerator.GenerateToken(obj);
+        return new TokenDTO
+        {
+            AccessToken = token.AccessToken,
+            Expiration = token.Expiration
+        };
+    }
+    
 }

@@ -1,7 +1,9 @@
+using ToDoList.Domain.Entities;
+
 namespace ToDoList.API.Token;
 
 public interface ITokenGenerator
 {
-    string GenerateToken();
+    dynamic GenerateToken(User user);
     
 }

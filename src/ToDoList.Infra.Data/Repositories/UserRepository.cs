@@ -20,6 +20,12 @@ public class UserRepository : BaseRepository<User>, IUserRepository
         return obj;
     }
 
+    public async Task<User> GetByEmailAndPasswordAsync(string email, string password)
+    {
+        var obj = await _context.Users.AsNoTracking().Where(x => x.Email == email && x.Password == password).FirstOrDefaultAsync();
+        return obj;
+    }
+
     public async Task<ICollection<User>> SearchByEmailAsync(string email)
     {
         var users = await _context.Users.AsNoTracking().

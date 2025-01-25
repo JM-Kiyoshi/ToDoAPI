@@ -5,7 +5,7 @@ namespace ToDoList.Application.Services.Interfaces;
 
 public interface IAssignmentListService
 {
-    Task<ResultService<AssignmentListDTO>> CreateAsync(AssignmentListDTO assignmentListDto);
+    Task<ResultService<AssignmentListDTO>> CreateAsync(string name, string token);
     Task<ResultService<AssignmentListDTO>> UpdateAsync(AssignmentListDTO assignmentListDto);
     Task<ResultService> DeleteAsync(long id);
     Task<ResultService<AssignmentListDTO>> GetByIdAsync(long id);

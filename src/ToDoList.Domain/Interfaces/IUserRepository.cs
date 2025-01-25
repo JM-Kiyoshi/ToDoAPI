@@ -5,6 +5,7 @@ namespace ToDoList.Domain.Interfaces;
 public interface IUserRepository : IBaseRepository<User>
 {
     Task<User> GetByEmailAsync(string email);
+    Task<User> GetByEmailAndPasswordAsync(string email, string password);
     Task<ICollection<User>> SearchByEmailAsync(string email);
     Task<ICollection<User>> SearchByNameAsync(string name);
     Task<long> GetIdByLoginAsync(string email, string password);

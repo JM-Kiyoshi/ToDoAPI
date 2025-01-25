@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ToDoList.API.Token;
+using ToDoList.Application.Token;
 using ToDoList.Infra.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,29 +15,30 @@ IConfiguration configuration = builder.Configuration;
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 #region Jwt
-    var secretKey = configuration["Jwt:Key"];
+var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("dWFzZGhmcG9hc2hkZnA4MjM0LTQyMzRqaWRmaHBqc2x"));
 
-    builder.Services.AddAuthentication(x =>
+builder.Services.AddAuthentication(authOptions =>
+{
+    authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer("Bearer", options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
     {
-        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(x =>
-    {
-        x.RequireHttpsMetadata = false;
-        x.SaveToken = true;
-        x.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)),
-            ValidateIssuer = false,
-            ValidateAudience = false
-        };
-    });
+        ValidateIssuerSigningKey = true,
+        ValidateLifetime = true,
+        IssuerSigningKey = key,
+        ValidateAudience = false,
+        ValidateIssuer = false,
+    };
+});
 #endregion
 #region DI
 
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
+builder.Services.AddScoped<IInfoTokenUser, InfoTokenUser>();
 #endregion
 builder.Services.AddSwaggerGen(c =>
 {
