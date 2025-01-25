@@ -21,6 +21,7 @@ Este projeto é uma API Rest de gerenciamento de tarefas e listas de tarefas, al
 - ScottBrady91.AspNetCore.Identity.Argon2PasswordHasher
 
 ## Como instalar e utilizar
+### Observação: Instalar o sdk 8.0 e o respectivo runtime.
 
 1. Clone o repositório:
 
